@@ -1,3 +1,6 @@
 import Favorites from './Favorites'
 import Home from './Home'
-export { Favorites, Home }
+import Search from './Search'
+import Anime from './Anime'
+import Settings from './Settings'
+export { Favorites, Home, Search, Anime, Settings }
