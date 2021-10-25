@@ -1,8 +1,17 @@
 import React from 'react'
-import { View, Button, Text } from 'react-native'
-const Anime = ({ navigation }) =>
-    <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#4f5b62' }}>
-        <Text>Anime AnimApp</Text>
-    </View>
+import { View, Text } from 'react-native'
+import { Image } from 'react-native-elements';
+
+const Anime = ({ image, title }) => {
+    return (
+        <View>
+            <Image
+                source={{ uri: image }}
+                style={{ width: 200, height: 200 }}
+            />
+            <Text>{title}</Text>
+        </View>
+    )
+}
 
 export default Anime

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, Button, Text } from 'react-native'
+import { View, Button, Text, Image } from 'react-native'
 import { useTheme } from '@react-navigation/native';
 const Search = ({ navigation }) => {
     const { colors } = useTheme();
