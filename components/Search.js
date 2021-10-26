@@ -12,7 +12,7 @@ const Search = ({ navigation }) => {
                 onPress={() => navigation.navigate('Home')}
                 color={colors.text}
             />
-        </View >
+        </View>
 
     )
 }

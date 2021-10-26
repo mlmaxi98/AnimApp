@@ -1,8 +1,7 @@
 import ApolloClient from 'apollo-boost'
 
-
 const Client = new ApolloClient({
-    uri: "https://anilist.co/graphiql"
+    uri: "https://graphql.anilist.co"
 });
 
 export default Client;

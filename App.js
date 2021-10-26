@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 import { ApolloProvider as Provider } from 'react-apollo'
 import { NavigationContainer as Navigation, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
+//import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { Favorites, Home, Search, Anime, Settings } from './components'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-//import Client from './graphql'
+import Client from './graphql'
 import { useColorScheme } from 'react-native';
-import ApolloClient from 'apollo-boost'
 
-const { Screen, Navigator } = createMaterialBottomTabNavigator();
-const Client = new ApolloClient({
-  uri: "https://graphql.anilist.co"
-});
+const { Screen, Navigator } = createStackNavigator()
+//const { Screen, Navigator } = createMaterialBottomTabNavigator();
+
 export default function App({ navigation }) {
   const scheme = useColorScheme();
   const [darkMode, setDarkMode] = useState(false)
-  const theme = darkMode ? DarkTheme : DefaultTheme
+  const theme = !darkMode ? DarkTheme : DefaultTheme
   return (
     <Provider client={Client} >
       <Navigation theme={theme}>
         <Navigator
           sceneAnimationEnabled
-          initialRouteName="Home"
-          activeColor="#fafafa"
+          screenOptions={{
+            headerShown: false
+          }}
         >
           <Screen
             name="Home"
@@ -32,6 +33,8 @@ export default function App({ navigation }) {
               tabBarIcon: ({ color }) => (
                 <Icons name="home" color={color} size={26} />
               ),
+              headerTitleAlign: 'center',
+
             }}
           />
           <Screen

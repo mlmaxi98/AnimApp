@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ActivityIndicator } from 'react-native'
 import { Image } from 'react-native-elements';
 
 const Anime = ({ image, title }) => {
@@ -7,9 +7,9 @@ const Anime = ({ image, title }) => {
         <View>
             <Image
                 source={{ uri: image }}
-                style={{ width: 200, height: 200 }}
+                style={{ width: 100, height: 100, borderRadius: 10, margin:10 }}
+                PlaceholderContent={<ActivityIndicator />}
             />
-            <Text>{title}</Text>
         </View>
     )
 }
