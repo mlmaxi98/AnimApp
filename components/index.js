@@ -1,6 +1,13 @@
+import CardAnime from './CardAnime'
+import Carousel from './Carousel'
 import Favorites from './Favorites'
-import Home from './Home'
-import Search from './Search'
-import Anime from './Anime'
-import Settings from './Settings'
-export { Favorites, Home, Search, Anime, Settings }
+import Search from '../views/Search'
+import SliderHome from './SliderHome'
+
+export {
+    CardAnime,
+    Carousel,
+    Favorites,
+    Search,
+    SliderHome
+}

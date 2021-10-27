@@ -4,7 +4,7 @@ import { NavigationContainer as Navigation, DefaultTheme, DarkTheme } from '@rea
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 //import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Favorites, Home, Search, Anime, Settings } from './components'
+import { Home, Search } from './views'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Client from './graphql'
 import { useColorScheme } from 'react-native';
@@ -37,6 +37,7 @@ export default function App({ navigation }) {
 
             }}
           />
+
           <Screen
             name="Search"
             component={Search}
@@ -47,6 +48,7 @@ export default function App({ navigation }) {
               ),
             }}
           />
+          {/* 
           <Screen
             name="Favorites"
             component={Favorites}
@@ -76,7 +78,7 @@ export default function App({ navigation }) {
                 <Icons name="cog" color={color} size={26} />
               ),
             }}
-          />
+          /> */}
         </Navigator>
       </Navigation>
     </Provider>
