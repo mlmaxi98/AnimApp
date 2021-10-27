@@ -11,7 +11,7 @@ const SliderHome = ({ images }) => {
                 images={images}
                 autoplay={true}
                 circleLoop={true}
-                sliderBoxHeight={dimentions.height / 2.5}
+                sliderBoxHeight={dimentions.height / 1.5}
                 dotStyle={styles.sliderStyle}
             />
         </View>

@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
+import 'react-native-gesture-handler';
 import { ApolloProvider as Provider } from 'react-apollo'
 import { NavigationContainer as Navigation, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import 'react-native-gesture-handler';
-//import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { Home, Search } from './views'
+import { Details, Home, Search } from './views'
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Client from './graphql'
 import { useColorScheme } from 'react-native';
 
 const { Screen, Navigator } = createStackNavigator()
-//const { Screen, Navigator } = createMaterialBottomTabNavigator();
 
 export default function App({ navigation }) {
   const scheme = useColorScheme();
   const [darkMode, setDarkMode] = useState(false)
-  const theme = !darkMode ? DarkTheme : DefaultTheme
+  const theme = darkMode ? DarkTheme : DefaultTheme
   return (
     <Provider client={Client} >
       <Navigation theme={theme}>
@@ -39,10 +37,10 @@ export default function App({ navigation }) {
           />
 
           <Screen
-            name="Search"
-            component={Search}
+            name="Details"
+            component={Details}
             options={{
-              tabBarLabel: 'Search',
+              tabBarLabel: 'Details',
               tabBarIcon: ({ color }) => (
                 <Icons name="magnify" color={color} size={26} />
               ),

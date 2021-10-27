@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo';
 import { Carousel, SliderHome } from '../components/';
-import { ActivityIndicator, Dimensions, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
 /* Page(page: 1, perPage: 50) {
           media(type: ANIME) {
             id
@@ -47,11 +47,15 @@ const Home = ({ navigation }) => {
         )
     }
     return (
-        <View style={styles.sliderContainer}>
-            <SliderHome images={animes.map(anime => anime.coverImage.extraLarge)} />
-
-            <Carousel list={animes} />
-        </View>
+        <ScrollView>
+            <View style={styles.sliderContainer}>
+                <SliderHome images={animes.map(anime => anime.coverImage.extraLarge)} />
+                <Carousel list={animes} title="Most popularities" navigation={navigation} />
+                <Carousel list={animes} />
+                <Carousel list={animes} />
+                <Carousel list={animes} />
+            </View>
+        </ScrollView>
     )
 }
 

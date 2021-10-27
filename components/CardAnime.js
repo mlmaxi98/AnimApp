@@ -2,9 +2,12 @@ import React from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
 import { Image } from 'react-native-elements';
 
-const Anime = ({ image }) => {
+const Anime = ({ image, navigation }) => {
+    const onPress = () => {
+        navigation.navigate('Details')
+    }
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image
                 source={{ uri: image }}
                 style={styles.image}

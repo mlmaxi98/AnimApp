@@ -1,9 +1,10 @@
 import React from 'react'
-import { FlatList, StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import CardAnime from './CardAnime'
-const Carousel = ({ list }) => {
+const Carousel = ({ list, title, navigation }) => {
     return (
         <View style={styles.container}>
+            <Text style={styles.text}>{title}</Text>
             <FlatList
                 contentContainerStyle={{ alignItems: 'center' }}
                 data={list}
@@ -13,6 +14,7 @@ const Carousel = ({ list }) => {
                     <CardAnime
                         title={item.title.romaji}
                         image={item.coverImage.large}
+                        navigation={navigation}
                     />
                 )}
             />
@@ -24,7 +26,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        //alignItems: 'center',
+        marginTop: 25,
     },
+    text: {
+        paddingBottom: 20,
+        paddingLeft: 5,
+        fontWeight: 'bold',
+        fontSize: 20,
+    }
 })
 export default Carousel
