@@ -17,22 +17,22 @@ import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
         } */
 
 const Home = ({ navigation }) => {
-    let query = gql`
-    {
-        Page(page: 1, perPage: 10) {
-            media(type: ANIME, seasonYear:2019) {
-                id
-                coverImage {
-                    extraLarge
-                    large
-                }
-                title {
-                    romaji
+    const GET_ANIMES = gql`
+        query Animes {
+            Page(page: 1, perPage: 10) {
+                media(type:ANIME, sort:[POPULARITY_DESC]) {
+                    id
+                    coverImage {
+                        extraLarge
+                        large
+                    }
+                    title {
+                        romaji
+                    }
                 }
             }
-          }
-      }`
-    let { data, loading, error } = useQuery(query)
+        }`
+    let { data, loading, error } = useQuery(GET_ANIMES)
     const [animes, setAnimes] = useState([])
 
     useEffect(() => {

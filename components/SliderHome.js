@@ -9,10 +9,12 @@ const SliderHome = ({ images }) => {
         <View style={styles.container}>
             <SliderBox
                 images={images}
-                autoplay={true}
-                circleLoop={true}
+                resizeMode={'cover'}
+                autoplay
+                circleLoop
                 sliderBoxHeight={dimentions.height / 1.5}
                 dotStyle={styles.sliderStyle}
+                ImageComponentStyle={{borderRadius: 25 }}
             />
         </View>
     )
@@ -24,5 +26,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    sliderStyle:{
+        backgroundColor:'transparent',
+        width: 0,
+    }
 })
 export default SliderHome
