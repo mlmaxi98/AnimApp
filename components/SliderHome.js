@@ -14,7 +14,7 @@ const SliderHome = ({ images }) => {
                 circleLoop
                 sliderBoxHeight={dimentions.height / 1.5}
                 dotStyle={styles.sliderStyle}
-                ImageComponentStyle={{borderRadius: 25 }}
+                ImageComponentStyle={{ borderBottomRightRadius: 25, borderBottomLeftRadius: 25 }}
             />
         </View>
     )
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    sliderStyle:{
-        backgroundColor:'transparent',
+    sliderStyle: {
+        backgroundColor: 'transparent',
         width: 0,
     }
 })

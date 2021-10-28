@@ -1,8 +1,8 @@
 import React from 'react'
-import { ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
+import { ActivityIndicator, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { Image } from 'react-native-elements';
 
-const Anime = ({ image, navigation }) => {
+const CardAnime = ({ image, navigation, title }) => {
     const onPress = () => {
         navigation.navigate('Details')
     }
@@ -14,6 +14,7 @@ const Anime = ({ image, navigation }) => {
                 PlaceholderContent={<ActivityIndicator />}
                 resizeMode="cover"
             />
+            <Text numberOfLines={1} ellipsizeMode="tail" style={styles.text}>{title}</Text>
         </TouchableOpacity>
     )
 }
@@ -27,7 +28,10 @@ const styles = StyleSheet.create({
         height: 200,
         width: 120,
         borderRadius: 20,
+    },
+    text: {
+        width: 120,
     }
 })
 
-export default Anime
+export default CardAnime

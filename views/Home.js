@@ -1,42 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { gql } from 'apollo-boost'
 import { useQuery } from 'react-apollo';
 import { Carousel, SliderHome } from '../components/';
 import { ActivityIndicator, ScrollView, StyleSheet, View } from 'react-native';
-/* Page(page: 1, perPage: 50) {
-          media(type: ANIME) {
-            id
-            title {
-                romaji
-            }
-            coverImage {
-              large
-              color
-            }
-          }
-        } */
-
+import { queryHome } from '../graphql/Queries'
 const Home = ({ navigation }) => {
-    const GET_ANIMES = gql`
-        query Animes {
-            Page(page: 1, perPage: 10) {
-                media(type:ANIME, sort:[POPULARITY_DESC]) {
-                    id
-                    coverImage {
-                        extraLarge
-                        large
-                    }
-                    title {
-                        romaji
-                    }
-                }
-            }
-        }`
-    let { data, loading, error } = useQuery(GET_ANIMES)
-    const [animes, setAnimes] = useState([])
+
+    const { data, loading, error } = useQuery(queryHome)
+    const [trending, setTrending] = useState([])
+    //const [main, setMain] = useState([])
+    const [mostPopularies, setMostPopularies] = useState([])
+    const [top, setTop] = useState([])
 
     useEffect(() => {
-        if (data && !loading && !error) setAnimes([...data.Page.media])
+        if (data && !loading && !error) {
+            setTrending([...data.trending.media])
+            setMostPopularies([...data.mostPopularities.media])
+            setTop([...data.top.media])
+        }
     }, [data])
 
     if (loading) {
@@ -49,11 +29,9 @@ const Home = ({ navigation }) => {
     return (
         <ScrollView>
             <View style={styles.sliderContainer}>
-                <SliderHome images={animes.map(anime => anime.coverImage.extraLarge)} />
-                <Carousel list={animes} title="Most popularities" navigation={navigation} />
-                <Carousel list={animes} />
-                <Carousel list={animes} />
-                <Carousel list={animes} />
+                <SliderHome images={trending.map(anime => anime.coverImage.extraLarge)} />
+                <Carousel list={mostPopularies} title="Most popularities" navigation={navigation} />
+                <Carousel list={top} title="Top 100" navigation={navigation} />
             </View>
         </ScrollView>
     )
