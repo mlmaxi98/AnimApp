@@ -1,14 +1,14 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import CardAnime from './CardAnime'
-const Carousel = ({ list, title, navigation }) => {
+const Carousel = ({ list, title, navigation, vertical }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
             <FlatList
                 contentContainerStyle={{ alignItems: 'center' }}
                 data={list}
-                horizontal
+                horizontal={!vertical ? true : false}
                 keyExtractor={({ id }) => id.toString()}
                 renderItem={({ item }) => (
                     <CardAnime
@@ -17,6 +17,7 @@ const Carousel = ({ list, title, navigation }) => {
                         navigation={navigation}
                     />
                 )}
+                numColumns={vertical ? 3 : null}
             />
         </View>
     )
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         //alignItems: 'center',
         marginTop: 25,
+        flexWrap: 'nowrap'
     },
     text: {
         paddingBottom: 20,

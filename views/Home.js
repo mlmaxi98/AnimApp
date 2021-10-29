@@ -31,7 +31,7 @@ const Home = ({ navigation }) => {
             <View style={styles.sliderContainer}>
                 <SliderHome images={trending.map(anime => anime.coverImage.extraLarge)} />
                 <Carousel list={mostPopularies} title="Most popularities" navigation={navigation} />
-                <Carousel list={top} title="Top 100" navigation={navigation} />
+                <Carousel list={top} title="Top 100" navigation={navigation} vertical />
             </View>
         </ScrollView>
     )
