@@ -2,10 +2,7 @@ import React from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { Image } from 'react-native-elements';
 
-const CardAnime = ({ image, navigation, title }) => {
-    const onPress = () => {
-        navigation.navigate('Details')
-    }
+const CardAnime = ({ image, title, onPress }) => {
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <Image

@@ -2,6 +2,10 @@ import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import CardAnime from './CardAnime'
 const Carousel = ({ list, title, navigation, vertical }) => {
+    const handlePress = (item) => {
+        console.log('handle', item)
+        navigation.navigate('Details', { item })
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{title}</Text>
@@ -12,9 +16,11 @@ const Carousel = ({ list, title, navigation, vertical }) => {
                 keyExtractor={({ id }) => id.toString()}
                 renderItem={({ item }) => (
                     <CardAnime
-                        title={item.title.romaji}
+                        item={item}
                         image={item.coverImage.large}
+                        title={item.title.romaji}
                         navigation={navigation}
+                        onPress={() => handlePress(item)}
                     />
                 )}
                 numColumns={vertical ? 3 : null}

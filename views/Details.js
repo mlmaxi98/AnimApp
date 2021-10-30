@@ -1,11 +1,16 @@
-import React from 'react'
-import { ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
+import React, { useEffect } from 'react'
+import { ActivityIndicator, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { Image } from 'react-native-elements';
 
-const Details = ({ image }) => {
+const Details = (props) => {
+    useEffect(() => {
+        console.log(props.route.params.item.coverImage.large)
+    }, [props]);
     return (
         <>
-            
+            <Text>
+            {props.route.params.item.coverImage.large}
+            </Text>
         </>
     )
 }
