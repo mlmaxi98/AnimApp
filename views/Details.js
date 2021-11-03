@@ -1,28 +1,67 @@
-import React, { useEffect } from 'react'
-import { ActivityIndicator, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { ActivityIndicator, Dimensions, StyleSheet, Text, View, ScrollView } from 'react-native'
 import { Image } from 'react-native-elements';
+import { queryId } from '../graphql/Queries'
+import { useQuery } from 'react-apollo';
 
-const Details = (props) => {
+const dimentions = Dimensions.get('screen')
+const Details = ({ route }) => {
+
+    const idAnime = route.params.id
+    const { data, loading: load, error } = useQuery(queryId, { variables: { id: idAnime } })
+    const [anime, setAnime] = useState({})
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
-        console.log(props.route.params.item.coverImage.large)
-    }, [props]);
+        if (data && !error && !load) {
+            setAnime({ ...data.Media })
+            setLoading(true)
+        }
+
+    }, [data]);
+
+    if (!loading) {
+
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="#00ff00" />
+            </View>
+        )
+    }
+    if (error) {
+        return (
+            <View style={styles.container}>
+                <Text>Ocurrió un error</Text>
+            </View>
+        )
+    }
     return (
-        <>
-            <Text>
-            {props.route.params.item.coverImage.large}
-            </Text>
-        </>
+        <ScrollView>
+            <View style={styles.container}>
+                <Image
+                    source={{ uri: anime.coverImage.extraLarge }}
+                    style={styles.image}
+                    PlaceholderContent={<ActivityIndicator />}
+                    resizeMode="cover"
+                />
+                <Text style={{ textAlign: "center" }}>
+                    {anime.title.romaji}
+                </Text>
+                <Text style={{ textAlign: "center" }}>
+                    {anime.title.native}
+                </Text>
+            </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        padding: 5,
-        position: 'relative',
+        flex: 1,
+        justifyContent: 'center'
     },
     image: {
-        height: 200,
-        width: 120,
+        height: dimentions.height / 2,
         borderRadius: 20,
     }
 })

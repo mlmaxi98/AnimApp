@@ -2,9 +2,14 @@ import React from 'react'
 import { ActivityIndicator, TouchableOpacity, StyleSheet, Text } from 'react-native'
 import { Image } from 'react-native-elements';
 
-const CardAnime = ({ image, title, onPress }) => {
+const CardAnime = ({ image, title, id, navigation }) => {
+
+    const handlePress = (id) => {
+        console.log('handle', id)
+        navigation.navigate('Details', { id })
+    }
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={styles.container} onPress={() => handlePress(id)}>
             <Image
                 source={{ uri: image }}
                 style={styles.image}

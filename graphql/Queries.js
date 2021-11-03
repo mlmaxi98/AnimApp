@@ -38,6 +38,20 @@ export const queryHome = gql`
                     }
         }
     }`
+export const queryId = gql`
+    query Id($id: Int) {
+        Media(type: ANIME, id: $id) {
+            id
+            title {
+                romaji
+                native
+            }
+            coverImage {
+                extraLarge
+            }
+
+        }
+    }`
 
 //Querys con variables
 
